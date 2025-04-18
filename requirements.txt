@@ -4,6 +4,7 @@ uvicorn
 beautifulsoup4
 requests
 langchain
+langchain-community  # Add this line
 faiss-cpu
 sentence-transformers
 gunicorn
