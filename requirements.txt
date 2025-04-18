@@ -6,4 +6,4 @@ requests
 langchain
 faiss-cpu
 sentence-transformers
-gunicorn  # Optional, if you want to use gunicorn for production
+gunicorn
