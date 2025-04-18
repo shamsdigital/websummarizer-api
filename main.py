@@ -95,3 +95,8 @@ def summarize(request: URLRequest):
 def search(query: str = Query(...)):
     results = search_memory(query)
     return {"matches": results[:5]}  # Limit to top 5
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
