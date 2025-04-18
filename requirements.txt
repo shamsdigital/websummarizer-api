@@ -1,3 +1,4 @@
+# websummarizer-api/requirements.txt
 fastapi
 uvicorn
 beautifulsoup4
@@ -5,3 +6,4 @@ requests
 langchain
 faiss-cpu
 sentence-transformers
+gunicorn  # Optional, if you want to use gunicorn for production
