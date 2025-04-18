@@ -1,2 +1,3 @@
 #!/bin/bash
-gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --host 0.0.0.0 --port $PORT
+# websummarizer-api/start.sh
+gunicorn -b 0.0.0.0:$PORT main:app -w 4 -k uvicorn.workers.UvicornWorker
