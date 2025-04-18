@@ -1,3 +1,4 @@
+# websummarizer-api/main.py
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 import requests
@@ -11,7 +12,7 @@ import os
 app = FastAPI()
 
 # 🧠 Replace with your OpenRouter API key
-OPENROUTER_API_KEY = "sk-REPLACE_WITH_YOUR_KEY"
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "sk-REPLACE_WITH_YOUR_KEY")
 
 class URLRequest(BaseModel):
     url: str
@@ -40,7 +41,8 @@ def crawl_website(base_url):
                 full_url = urljoin(url, link['href'])
                 if urlparse(full_url).netloc == urlparse(base_url).netloc:
                     to_visit.append(full_url)
-        except:
+        except Exception as e:
+            print(f"Error crawling {url}: {e}")
             continue
     return pages
 
@@ -96,7 +98,7 @@ def search(query: str = Query(...)):
     results = search_memory(query)
     return {"matches": results[:5]}  # Limit to top 5
 
-
 if __name__ == "__main__":
+    import uvicorn
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)
