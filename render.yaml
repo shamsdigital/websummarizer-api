@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: websummarizer-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: ./start.sh
+    envVars:
+      - key: OPENROUTER_API_KEY
+        value: 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
